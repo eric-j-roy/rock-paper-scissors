@@ -20,10 +20,9 @@ function getComputerChoice(computerChoice) {
     }
 
     console.log("Computer selected: " + computerChoice);
-    console.log(" ");
 
     return computerChoice;
-    }
+}
 
 // Determine winner of the round based on selections
 function playRound(humanChoice, computerChoice) {
@@ -44,9 +43,9 @@ function playRound(humanChoice, computerChoice) {
         winner = "TIE";
     }
 
-    if (winner = "HUMAN") {
+    if (winner === "HUMAN") {
         console.log("Nice job! " + humanChoice + " beats " + computerChoice + "!");
-    } else if (winnner ="COMPUTER") {
+    } else if (winner === "COMPUTER") {
         console.log("Oh no! " + computerChoice + " beats " + humanChoice + "!");
     } else {
         console.log("It's a tie! You both picked " + computerChoice + "!");
@@ -55,11 +54,34 @@ function playRound(humanChoice, computerChoice) {
     return winner;
 }
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-
-playRound(humanChoice, computerChoice);
-
 // Track the score of the game until one side has 5 wins
 let humanScore = 0;
 let computerScore = 0;
+
+function playGame() {
+    while (humanScore < 5 & computerScore < 5) {
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+
+        let winner = playRound(humanSelection, computerSelection);
+        let tieScore = 0;
+        if (winner === "HUMAN") {
+            humanScore = humanScore + 1;
+        } else if (winner === "COMPUTER") {
+            computerScore = computerScore + 1;
+        } else {
+            tieScore = tieScore + 1;
+        }
+
+        console.log("*  Score: You [" + humanScore + "] - Computer [" + computerScore + "]  *");
+        console.log(" ");
+    }
+
+    if (humanScore === 5) {
+        console.log("Congratulations! You win!");
+    } else {
+        console.log("Better luck next time! The computer wins this round...");
+    }
+}
+
+playGame();
