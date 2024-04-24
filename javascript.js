@@ -3,10 +3,10 @@ function getHumanChoice(humanChoice) {
     humanChoice = prompt("Select your weapon of choice - ROCK, PAPER, or SCISSORS: ");
     humanChoice = humanChoice.toUpperCase();
 
+    console.log("You selected: " + humanChoice);
+
     return humanChoice;
 }
-
-console.log(getHumanChoice());
 
 // A random selection is chosen to play against the user's selection
 function getComputerChoice(computerChoice) {
@@ -19,11 +19,47 @@ function getComputerChoice(computerChoice) {
         computerChoice = "SCISSORS";
     }
 
+    console.log("Computer selected: " + computerChoice);
+    console.log(" ");
+
     return computerChoice;
     }
 
-console.log(getComputerChoice("Test"));
-
 // Determine winner of the round based on selections
+function playRound(humanChoice, computerChoice) {
+    let winner = "";
+    if (humanChoice === "ROCK" & computerChoice === "PAPER") {
+        winner = "COMPUTER";
+    } else if (humanChoice === "ROCK" & computerChoice === "SCISSORS") {
+        winner = "HUMAN";
+    } else if (humanChoice === "SCISSORS" & computerChoice === "ROCK") {
+        winner = "COMPUTER";
+    } else if (humanChoice === "SCISSORS" & computerChoice === "PAPER") {
+        winner = "HUMAN";
+    } else if (humanChoice === "PAPER" & computerChoice === "ROCK") {
+        winner = "HUMAN";
+    } else if (humanChoice === "PAPER" & computerChoice === "SCISSORS") {
+        winner = "COMPUTER";
+    } else {
+        winner = "TIE";
+    }
+
+    if (winner = "HUMAN") {
+        console.log("Nice job! " + humanChoice + " beats " + computerChoice + "!");
+    } else if (winnner ="COMPUTER") {
+        console.log("Oh no! " + computerChoice + " beats " + humanChoice + "!");
+    } else {
+        console.log("It's a tie! You both picked " + computerChoice + "!");
+    }
+
+    return winner;
+}
+
+const humanChoice = getHumanChoice();
+const computerChoice = getComputerChoice();
+
+playRound(humanChoice, computerChoice);
 
 // Track the score of the game until one side has 5 wins
+let humanScore = 0;
+let computerScore = 0;
